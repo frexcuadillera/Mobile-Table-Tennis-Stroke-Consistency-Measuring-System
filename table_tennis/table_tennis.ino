@@ -1,6 +1,6 @@
 #include <SPI.h>
-#include <nRF24L01.h>
-#include <RF24.h>
+//#include <nRF24L01.h>
+//#include <RF24.h>
 
 #include "I2Cdev.h"
 #include "MPU6050.h"
@@ -21,10 +21,10 @@ String str_ax, str_ay, str_az, str_soundLevel, string_buffer;
 #define SOUND_PIN A2
 
 //nrf variables
-const int payload_size = 32;
-static char send_payload[payload_size];
-
-RF24 radio(9, 10);
+//const int payload_size = 32;
+//static char send_payload[payload_size];
+//
+//RF24 radio(9, 10);
 
 void setup() {
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -36,7 +36,7 @@ void setup() {
     Serial.begin(115200);
 
     // initialize device
-    Serial.println("Initializing I2C devices...");
+    //Serial.println("Initializing I2C devices...");
     accelgyro.initialize();
 
     // verify connection
@@ -58,12 +58,14 @@ void setup() {
     pinMode(SOUND_PIN, INPUT);
 
   //nrf
-  radio.begin();
-  radio.openWritingPipe(0xE8E8F0F0E1LL);
-  radio.setChannel(0x77);
-  radio.setPALevel(RF24_PA_MAX);
-  radio.enableDynamicPayloads();
-  radio.stopListening();
+//  radio.begin();
+//  radio.setPALevel(RF24_PA_MAX);
+//  radio.setChannel(0x76);
+//  radio.openWritingPipe(0xF0F0F0F0E1LL);
+//  radio.setDataRate(RF24_1MBPS);
+//  radio.enableDynamicPayloads();
+//  radio.powerUp();
+//  radio.stopListening();
 }
 
 void loop() {
@@ -77,10 +79,9 @@ void loop() {
     str_soundLevel = String(soundLevel);
 
     string_buffer = str_ax + " " + str_ay + " " + str_az + " " + str_soundLevel;
-    string_buffer.toCharArray(send_payload, payload_size);
+    //string_buffer.toCharArray(send_payload, payload_size);
     
-    Serial.println(send_payload);
-
-    radio.write(send_payload, payload_size);
+    Serial.println(string_buffer);
+    //radio.write(send_payload, payload_size);
 
 }

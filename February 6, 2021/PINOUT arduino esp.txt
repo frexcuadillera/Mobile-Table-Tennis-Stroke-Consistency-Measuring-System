@@ -1,0 +1,26 @@
+ARDUINO PRO MINI	SOUND SENSOR
+VCC			5v
+GND			GND
+A2			OUT
+
+ARDUINO PRO MINI	MPU6050 (ACCELEROMETER/GYROSCOPE) address: 0x68
+VCC			VCC
+GND			GND
+A5			SCL
+A4			SDA
+2			INT
+
+
+ARDUINO PRO MINI	ESP01
+RX			TX
+TX			RX
+
+ESP01 			Battery (dapat may sarili syang power source and ground, hiwalay sa arduino)
+3v3			3v3
+EN			3v3
+GND			GND
+
+decoupling capacitor sa battery ng ESP01 para hindi kulangin ng power
+100 microfarad 16V or 25V
+
+			
