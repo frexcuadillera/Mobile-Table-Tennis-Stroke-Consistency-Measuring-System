@@ -45,13 +45,13 @@ void setup() {
 
     //set offsets
     
-    accelgyro.setXAccelOffset(-6663);
-    accelgyro.setYAccelOffset(1783);
-    accelgyro.setZAccelOffset(1438);
+    accelgyro.setXAccelOffset(-1744);
+    accelgyro.setYAccelOffset(-1645);
+    accelgyro.setZAccelOffset(4760);
 
-    accelgyro.setXGyroOffset(26);
-    accelgyro.setYGyroOffset(-17);
-    accelgyro.setZGyroOffset(4);
+    accelgyro.setXGyroOffset(79);
+    accelgyro.setYGyroOffset(-157);
+    accelgyro.setZGyroOffset(101);
 
     //sound sensor
 
@@ -79,9 +79,8 @@ void loop() {
     str_soundLevel = String(soundLevel);
 
     string_buffer = str_ax + " " + str_ay + " " + str_az + " " + str_soundLevel;
-    //string_buffer.toCharArray(send_payload, payload_size);
+
     
     Serial.println(string_buffer);
-    //radio.write(send_payload, payload_size);
 
 }
