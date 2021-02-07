@@ -1,5 +1,4 @@
 import socket
-import time
 
 host = "192.168.4.1"
 port = 5555
@@ -8,40 +7,34 @@ sock = socket.socket()
 
 sock.connect((host, port))
 
-correctPayLoad = [0, 0, 16384, 0]
-
-
 while True:
-##for x in range(50):
-    data = "";
-    payLoad = []
-    payLoadNo = 0
-    isPayLoadGood = False
-    correctPayLoadValues = 0
+    data = ""
+    payloadList = []
     
     while(len(data) < 128):
         data += sock.recv(1).decode("UTF-8")
 
-    payLoad = data.split('\n')
+    payloadList = data.split('\n')
 
-    while not isPayLoadGood:
+    for payload in payloadList:
         try:
-            if (len(payLoad[payLoadNo].split(' ')) == 4):
-                for x in payLoad:
-                    try:
-                        int(x)
-                        correctPayLoadValues += 1
-                    except Exception as ex:
-                        payLoadNo += 1
-                        break
-                if correctPayLoadValues == 4:
-                    correctPayLoad = payLoad[payLoadNo]
-                    isPayLoadGood = True
-            else:
-                payLoadNo += 1
-            
-        except Exception as ex:
-            break
+            #test if payload is complete
+            ax = payload.split(' ')[0]
+            ay = payload.split(' ')[1]
+            az = payload.split(' ')[2]
+            s = payload.split(' ')[3]
 
-    
-    print(correctPayLoad)
+            try:
+                #test each value if it is integer
+                int(ax)
+                int(ay)
+                int(az)
+                int(s)
+            
+                print(ax, ay, az, s)
+            except:
+                #print("payload not integer")
+                continue
+        except:
+            #print("incomplete payload")
+            continue
